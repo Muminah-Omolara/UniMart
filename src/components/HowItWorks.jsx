@@ -1,7 +1,7 @@
 import React from "react";
-import Buy from "../assets/Buy.svg";
-import Browse from "../assets/Browse.svg";
-import Connect from "../assets/Connect.svg";
+import Buy from "../assets/buy.svg";
+import Browse from "../assets/browse.svg";
+import Connect from "../assets/connect.svg";
 
 const steps = [
   {
