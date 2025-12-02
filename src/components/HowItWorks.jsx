@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion"; // <--- Import Motion
 import Buy from "../assets/buy.svg";
 import Browse from "../assets/browse.svg";
 import Connect from "../assets/connect.svg";
@@ -31,25 +32,33 @@ const HowItWorks = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-6 text-center">
-        {/* Header */}
-        <div className="mb-20">
+        {/* Header - Simple Fade In */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
           <h2 className="text-3xl md:text-5xl font-display font-black text-slate-900 mb-4 tracking-tight">
             HOW IT <span className="text-orange-600">GOES DOWN.</span>
           </h2>
           <p className="text-slate-500 font-medium text-lg max-w-2xl mx-auto">
             Browse the feed, text the seller, meet on campus. Done.
           </p>
-        </div>
+        </motion.div>
 
         {/* Steps Grid */}
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* DESKTOP ONLY: Connecting Dashed Line */}
-          <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 border-t-2 border-dashed border-orange-200 -z-10"></div>
-
           {steps.map((step, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative flex flex-col items-center text-center"
+              className="group relative flex flex-col items-center text-center z-10" // Added z-10 to sit above line
+              // --- ANIMATION SETTINGS ---
+              initial={{ opacity: 0, y: 50 }} // Start: Invisible & 50px down
+              whileInView={{ opacity: 1, y: 0 }} // End: Visible & Original position
+              viewport={{ once: true, margin: "-50px" }} // Trigger when scrolled into view
+              transition={{ duration: 0.5, delay: index * 0.2 }} // Stagger: 0s, 0.2s, 0.4s
             >
               {/* Image Container with Hover Effect */}
               <div className="relative w-24 h-24 mb-8 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 group-hover:shadow-orange-100 group-hover:border-orange-200 transition-all duration-300 z-10">
@@ -72,16 +81,21 @@ const HowItWorks = () => {
               <p className="text-slate-500 font-medium leading-relaxed px-4">
                 {step.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Optional CTA */}
-        <div className="mt-16">
+        {/* Optional CTA - Fades in last */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-16"
+        >
           <button className="bg-white text-slate-900 border-2 border-slate-200 px-8 py-3 rounded-full font-bold hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-all">
             Start Exploring
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

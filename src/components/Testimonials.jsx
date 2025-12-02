@@ -1,5 +1,6 @@
 import React from "react";
 import { Star, Quote } from "lucide-react";
+import { motion } from "framer-motion";
 
 const REVIEWS = [
   {
@@ -29,16 +30,23 @@ const REVIEWS = [
     hostel: "Hostel A",
     content:
       "I didn't know where to get affordable curtains for my room. Found a senior selling theirs for half the market price. This site is a cheat code.",
-    rating: 4, // 4 stars makes it look more realistic/honest
+    rating: 4,
     avatarColor: "bg-orange-100 text-orange-600",
   },
 ];
 
 const Testimonials = () => {
+  // Logic: Each card has a specific starting point
+  const getInitialPosition = (index) => {
+    if (index === 0) return { x: -100, opacity: 0 }; // Left Card starts LEFT
+    if (index === 1) return { y: 100, opacity: 0 }; // Middle Card starts BOTTOM
+    return { x: 100, opacity: 0 }; // Right Card starts RIGHT
+  };
+
   return (
-    <section className="py-9 mt-8 bg-stone-50">
+    <section className="py-24 bg-stone-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+        {/* Header - Static to keep focus on cards */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
             <Star size={14} className="fill-orange-500 text-orange-500" />
@@ -55,18 +63,26 @@ const Testimonials = () => {
 
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {REVIEWS.map((review) => (
-            <div
+          {REVIEWS.map((review, index) => (
+            <motion.div
               key={review.id}
               className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-orange-100/50 hover:-translate-y-1 transition-all duration-300 relative group"
+              // --- THE CONVERGENCE LOGIC ---
+              initial={getInitialPosition(index)} // Set distinct start points
+              whileInView={{ x: 0, y: 0, opacity: 1 }} // Every card meets at the Center (0,0)
+              // Trigger when 20% of the section is visible
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 1.0, // Smooth speed (not too fast, not too slow)
+                ease: "easeOut",
+                delay: 0, //
+              }}
             >
-              {/* Giant Quote Icon for decoration */}
               <Quote
                 className="absolute top-8 right-8 text-slate-100 group-hover:text-orange-100 transition-colors"
                 size={64}
               />
 
-              {/* Stars */}
               <div className="flex space-x-1 mb-6">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -81,12 +97,10 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              {/* Content */}
               <p className="text-slate-700 font-medium leading-relaxed mb-8 relative z-10">
                 "{review.content}"
               </p>
 
-              {/* User Profile */}
               <div className="flex items-center space-x-4 border-t border-slate-50 pt-6">
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center font-black text-lg ${review.avatarColor}`}
@@ -100,7 +114,7 @@ const Testimonials = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -9,6 +9,7 @@ import Marquee from "./components/Marquee";
 import CallToAction from "./components/CallToAction";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Marquee />
       <Testimonials />
       <CallToAction />
+      <ScrollToTop />
       <Footer />
     </>
   );

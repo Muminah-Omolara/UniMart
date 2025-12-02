@@ -4,7 +4,10 @@ import Logo from "../assets/Logo.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-slate-300 py-16 font-sans border-t border-slate-900">
+    <footer
+      id="contact"
+      className="bg-slate-950 text-slate-300 py-16 font-sans border-t border-slate-900"
+    >
       <div className="max-w-7xl mx-auto px-6">
         {/* TOP SECTION: Brand & Newsletter */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 border-b border-slate-800 pb-12">
