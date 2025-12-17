@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Stud from "../assets/students.jpg";
 import { NigerianUnis } from "../data/universities";
+import { FaApple } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -42,7 +44,7 @@ const Auth = () => {
         <img
           src={Stud}
           alt="Page Background"
-          className="w-full h-full object-cover blur-[2px] opacity-120" 
+          className="w-full h-full object-cover blur-[2px] opacity-120"
         />
         {/* Dark overlay so the white card stands out */}
         <div className="absolute inset-0 bg-slate-900/80"></div>
@@ -189,11 +191,7 @@ const Auth = () => {
                 <span className="text-sm">Google</span>
               </button>
               <button className="flex-1 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold py-2.5 rounded-xl flex items-center justify-center transition-colors">
-                <img
-                  src="https://www.svgrepo.com/show/508775/apple-logo.svg"
-                  className="w-5 h-5 mr-2"
-                  alt="Apple"
-                />
+                <img src={<FaApple />} className="w-5 h-5 mr-2" alt="Apple" />
                 <span className="text-sm">Apple</span>
               </button>
             </div>
@@ -255,12 +253,12 @@ const Auth = () => {
                 </button>
               </div>
               <div className="flex justify-end">
-                <a
-                  href="#"
+                <Link
+                  to="/forgot-password"
                   className="text-xs font-bold text-orange-600 hover:underline"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -285,11 +283,7 @@ const Auth = () => {
                 <span className="text-sm">Google</span>
               </button>
               <button className="flex-1 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold py-2.5 rounded-xl flex items-center justify-center transition-colors">
-                <img
-                  src="https://www.svgrepo.com/show/508775/apple-logo.svg"
-                  className="w-5 h-5 mr-2"
-                  alt="Apple"
-                />
+                <img src={FaApple} className="w-5 h-5 mr-2" alt="Apple logo" />
                 <span className="text-sm">Apple</span>
               </button>
             </div>
