@@ -92,7 +92,7 @@ const HowItWorks = () => {
           transition={{ delay: 0.8 }}
           className="mt-16"
         >
-          <button className="bg-white text-slate-900 border-2 border-slate-200 px-8 py-3 rounded-full font-bold hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-all">
+          <button className="bg-slate-900 text-white border-2 border-slate-200 px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-orange-200 hover:bg-orange-600 hover:text-white transition-all duration-300 transform hover:-translate-y-0.5">
             Start Exploring
           </button>
         </motion.div>

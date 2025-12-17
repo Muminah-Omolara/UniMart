@@ -1,30 +1,30 @@
 import React from "react";
 import "./App.css";
-import Hero from "./components/Hero";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Nav from "./components/Nav";
-import HowItWorks from "./components/HowItWorks";
-import Categories from "./components/Categories";
-import TrustSection from "./components/TrustSection";
-import Marquee from "./components/Marquee";
-import CallToAction from "./components/CallToAction";
-import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
+import Home from "./pages/Home";
+// import Shop from "./pages/Shop";
+import Auth from "./pages/Auth";
+
 function App() {
   return (
-    <>
+    <Router>
       <Nav />
-      <Hero />
-      <Categories />
-      <HowItWorks />
-      <TrustSection />
-      <Marquee />
-      <Testimonials />
-      <CallToAction />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/shop" element={<Shop />} /> */}
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
+
       <ScrollToTop />
+
       <Footer />
-    </>
+    </Router>
   );
 }
 
